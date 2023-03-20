@@ -1,0 +1,9 @@
+[package]
+name = "npmtest"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+actix-web = "4"
+serde = "1.0.157"
+la_transpiler = { path = "../la-transpiler" }
