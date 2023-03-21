@@ -2,30 +2,28 @@
 use strum_macros::EnumIter; // 0.17.1
 use std::fmt;
 
-#[derive(Debug, EnumIter, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, EnumIter, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum TokenType {
     PLAINTEXT,
-    BLOCKLABEL,
     OPENPAREN,
     CLOSEPAREN,
     PARAM,
     PARAMSEP,
     STYLE,
-    STYLEDTEXT,
     ENUMITEM,
     ENUMLABEL,
-    EQSTART,
+    EQ,
     EQEND,
-    EQBLOCKSTART,
+    EQBLOCK,
     EQBLOCKEND,
     LXSYMBOL,
     LXFUNC,
-    OPER,
-    SUBSCRIPT,
-    SUPERSCRIPT,
-    QUOTESTART,
-    QUOTEEND,
-    BLOCKSTART,
+    OPER, // not yet implemented
+    SUBSCRIPT, // not yet implemented
+    SUPERSCRIPT, // not yet implemented
+    QUOTESTART, // not yet implemented
+    QUOTEEND, // not yet implemented
+    BLOCK,
     BACKTAB,
     IGNORE,
     ERROR
@@ -35,18 +33,16 @@ impl fmt::Display for TokenType {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             TokenType::PLAINTEXT => write!(f, "PLAINTEXT"),
-            TokenType::BLOCKLABEL => write!(f, "BLOCKLABEL"),
             TokenType::OPENPAREN => write!(f, "OPENPAREN"),
             TokenType::CLOSEPAREN => write!(f, "CLOSEPAREN"),
             TokenType::PARAM => write!(f, "PARAM"),
             TokenType::PARAMSEP => write!(f, "PARAMSEP"),
             TokenType::   STYLE => write!(f, "STYLE"),
-            TokenType::  STYLEDTEXT => write!(f, "STYLEDTEXT"),
             TokenType:: ENUMITEM => write!(f, "ENUMITEM"),
             TokenType::ENUMLABEL => write!(f, "ENUMLABEL"),
-            TokenType:: EQSTART => write!(f, "EQSTART"),
+            TokenType:: EQ => write!(f, "EQ"),
             TokenType:: EQEND => write!(f, "EQEND"),
-            TokenType:: EQBLOCKSTART => write!(f, "EQBLOCKSTART"),
+            TokenType:: EQBLOCK => write!(f, "EQBLOCK"),
             TokenType::  EQBLOCKEND => write!(f, "EQBLOCKEND"),
             TokenType::LXSYMBOL => write!(f, "LXSYMBOL"),
             TokenType:: LXFUNC => write!(f, "LXFUNC"),
@@ -55,7 +51,7 @@ impl fmt::Display for TokenType {
             TokenType::SUPERSCRIPT => write!(f, "SUPERSCRIPT"),
             TokenType:: QUOTESTART => write!(f, "QUOTESTART"),
             TokenType::QUOTEEND => write!(f, "QUOTEEND"),
-            TokenType::BLOCKSTART => write!(f, "BLOCKSTART"),
+            TokenType::BLOCK => write!(f, "BLOCK"),
             TokenType::BACKTAB => write!(f, "BACKTAB"),
             TokenType::IGNORE => write!(f, "IGNORE"),
             TokenType::ERROR => write!(f, "ERROR"),

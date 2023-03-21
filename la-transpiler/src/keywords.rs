@@ -22,7 +22,7 @@ pub mod keywords {
                     current_state.prev_modes.push(current_state.mode.clone());
                     current_state.mode = TranscriptionMode::PARAMREAD;
                     current_state.indentation += 1;
-                    return TokenType::BLOCKSTART;
+                    return TokenType::BLOCK;
                 }
                 return TokenType::PLAINTEXT;
             },
